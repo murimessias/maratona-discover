@@ -1,0 +1,13 @@
+@import 'colors';
+
+header {
+  padding: 2rem 0 10rem;
+  background: $color-dark-green;
+
+  display: flex;
+  align-items: center;
+
+  #logo {
+    margin: auto;
+  }
+}
