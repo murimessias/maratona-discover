@@ -4,6 +4,12 @@
   h2 {
     margin-top: 0;
   }
+
+  @media screen and (min-width: 900px) {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 1rem;
+  }
 }
 
 #transaction {
