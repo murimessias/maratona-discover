@@ -11,18 +11,15 @@
   align-items: center;
   justify-content: center;
 
-  // opacity: 0;
-  // visibility: hidden;
-
-  opacity: 1;
-  visibility: visible;
+  opacity: 0;
+  visibility: hidden;
 
   z-index: 999;
 
-  // &.active {
-  //   opacity: 1;
-  //   visibility: visible;
-  // }
+  &.active {
+    opacity: 1;
+    visibility: visible;
+  }
 }
 
 .modal {

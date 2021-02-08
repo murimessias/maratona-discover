@@ -1,3 +1,5 @@
+@import '_colors';
+
 table {
   thead tr th:first-child,
   tbody tr td:first-child {
@@ -44,6 +46,14 @@ table {
       &.expense,
       &.income {
         text-align: right;
+      }
+
+      &.expense {
+        color: $color-red;
+      }
+
+      &.income {
+        color: $color-green;
       }
     }
   }
