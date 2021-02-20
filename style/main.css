@@ -147,6 +147,15 @@ body {
   border-width: 0;
 }
 
+a {
+  color: #49aa26;
+  text-decoration: none;
+}
+
+a:hover {
+  color: #3dd705;
+}
+
 header {
   padding: 2rem 0 10rem;
   background: #2d4a22;

@@ -18,3 +18,12 @@ body {
   white-space: nowrap;
   border-width: 0;
 }
+
+a {
+  color: $color-green;
+  text-decoration: none;
+}
+
+a:hover {
+  color: $color-light-green;
+}
