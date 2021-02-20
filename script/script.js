@@ -1,43 +1,43 @@
-/*  --------- FUNÇÃO COM OPEN & CLOSE --------- */
-// const Modal = {
-//   open() {
-//     document.querySelector('.modal-overlay').classList.toggle('active');
-//   },
-//   close() {
-//     document.querySelector('.modal-overlay').classList.toggle('active');
-//   },
-// };
+// Function that toggle the visibility of the Modal Window
+const Modal = {
+  modal: document.querySelector('.modal-overlay'),
 
-function toggleModal() {
-  const Modal = document.querySelector('.modal-overlay');
-  Modal.classList.toggle('active');
-}
+  toggle() {
+    Modal.modal.classList.toggle('active');
+  },
+};
 
-const transactions = [
-  {
-    id: 1,
-    description: 'Luz',
-    amount: -50020,
-    date: '23/01/2021',
+// Settings to use Local Storage
+const Storage = {
+  get() {
+    return JSON.parse(localStorage.getItem('dev.finances:transactions')) || [];
   },
-  {
-    id: 2,
-    description: 'Criação website',
-    amount: 500001,
-    date: '23/01/2021',
-  },
-  {
-    id: 3,
-    description: 'Internet',
-    amount: -20012,
-    date: '23/01/2021',
-  },
-];
 
-const Transactions = {
+  set(transaction) {
+    localStorage.setItem(
+      'dev.finances:transactions',
+      JSON.stringify(transaction)
+    );
+  },
+};
+
+// All transactions and functions
+const Transaction = {
+  all: Storage.get(),
+
+  add(transaction) {
+    Transaction.all.push(transaction);
+    App.reload();
+  },
+
+  remove(index) {
+    Transaction.all.splice(index, 1);
+    App.reload();
+  },
+
   incomes() {
     let income = 0;
-    transactions.forEach((transaction) => {
+    Transaction.all.forEach((transaction) => {
       if (transaction.amount > 0) {
         income += transaction.amount;
       }
@@ -47,7 +47,7 @@ const Transactions = {
 
   expenses() {
     let expense = 0;
-    transactions.forEach((transaction) => {
+    Transaction.all.forEach((transaction) => {
       if (transaction.amount < 0) {
         expense += transaction.amount;
       }
@@ -56,31 +56,32 @@ const Transactions = {
   },
 
   total() {
-    return Transactions.incomes() + Transactions.expenses();
+    return Transaction.incomes() + Transaction.expenses();
   },
 };
 
+// DOM objects and some functions to implement the new transactions
 const DOM = {
   transactionsContainer: document.querySelector('#data-table tbody'),
 
   addTransaction(transaction, index) {
     const tr = document.createElement('tr');
-    tr.innerHTML = DOM.innerHTMLTransaction(transaction);
+    tr.innerHTML = DOM.innerHTMLTransaction(transaction, index);
+    tr.dataset.index = index;
 
     DOM.transactionsContainer.appendChild(tr);
   },
 
-  innerHTMLTransaction(transaction) {
+  innerHTMLTransaction(transaction, index) {
     const CSSclass = transaction.amount > 0 ? 'income' : 'expense';
     const amount = Utils.formatCurrency(transaction.amount);
-
     const html = `
       <td class="description">${transaction.description}</td>
       <td class="${CSSclass}">${amount}</td>
       <td class="date">${transaction.date}</td>
-      <td>
-        <img src="./assets/minus.svg" alt="Remover transação" />
-      </td>
+        <td>
+            <img onclick="Transaction.remove(${index})" src="./assets/minus.svg" alt="Remover transação">
+        </td>
     `;
 
     return html;
@@ -88,19 +89,24 @@ const DOM = {
 
   updateBalance() {
     document.querySelector('#incomeDisplay').innerHTML = Utils.formatCurrency(
-      Transactions.incomes()
+      Transaction.incomes()
     );
 
     document.querySelector('#expenseDisplay').innerHTML = Utils.formatCurrency(
-      Transactions.expenses()
+      Transaction.expenses()
     );
 
     document.querySelector('#totalDisplay').innerHTML = Utils.formatCurrency(
-      Transactions.total()
+      Transaction.total()
     );
+  },
+
+  clearTransactions() {
+    DOM.transactionsContainer.innerHTML = '';
   },
 };
 
+// Formatter functions to prevent default application behavior
 const Utils = {
   formatCurrency(value) {
     const signal = Number(value) < 0 ? '-' : '';
@@ -114,10 +120,97 @@ const Utils = {
 
     return signal + value;
   },
+
+  formatAmount(value) {
+    value = Number(value) * 100;
+
+    return value;
+  },
+
+  formatDate(date) {
+    const splitedDate = date.split('-');
+
+    return `${splitedDate[2]}/${splitedDate[1]}/${splitedDate[0]}`;
+  },
 };
 
-transactions.forEach(function (transaction) {
-  DOM.addTransaction(transaction);
-});
+// Variable Form to get datas from HTML form inputs
+const Form = {
+  description: document.querySelector('input#description'),
+  amount: document.querySelector('input#amount'),
+  date: document.querySelector('input#date'),
 
-DOM.updateBalance();
+  getValues() {
+    return {
+      description: Form.description.value,
+      amount: Form.amount.value,
+      date: Form.date.value,
+    };
+  },
+
+  validateFields() {
+    const { description, amount, date } = Form.getValues();
+
+    if (
+      description.trim() === '' ||
+      amount.trim() === '' ||
+      date.trim() === ''
+    ) {
+      throw new Error('Por favor preencha todos os campos');
+    }
+  },
+
+  formatValues() {
+    let { description, amount, date } = Form.getValues();
+
+    amount = Utils.formatAmount(amount);
+    date = Utils.formatDate(date);
+
+    return {
+      description,
+      amount,
+      date,
+    };
+  },
+
+  clearFields() {
+    Form.description.value = '';
+    Form.amount.value = '';
+    Form.date.value = '';
+  },
+
+  submit(event) {
+    event.preventDefault();
+
+    try {
+      Form.validateFields();
+      const transaction = Form.formatValues();
+      Transaction.add(transaction);
+      Form.clearFields();
+      Modal.toggle();
+    } catch (error) {
+      alert(error.message);
+    }
+  },
+};
+
+// Function to load the application
+const App = {
+  init() {
+    Transaction.all.forEach(DOM.addTransaction);
+    DOM.updateBalance();
+    Storage.set(Transaction.all);
+  },
+
+  reload() {
+    DOM.clearTransactions();
+    App.init();
+  },
+};
+
+App.init();
+
+/* 
+  Code made by Murilo Messias during the 
+  "Maratona Discover" from Rocketseat 
+*/
