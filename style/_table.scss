@@ -43,6 +43,11 @@ table {
 
       color: $color-dark-blue;
 
+      &.income,
+      &.date {
+        font-family: 'IBM Plex Mono', monospace;
+      }
+
       &.expense,
       &.income {
         text-align: right;
@@ -54,6 +59,10 @@ table {
 
       &.income {
         color: $color-green;
+      }
+
+      &.remove {
+        cursor: pointer;
       }
     }
   }

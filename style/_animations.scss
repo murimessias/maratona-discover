@@ -1,0 +1,25 @@
+#logo-loading {
+  fill: transparent;
+  stroke-width: 0.5;
+  stroke: white;
+  animation: logo 4s ease infinite alternate;
+  transform: scale(1.15);
+}
+
+@keyframes logo {
+  0% {
+    stroke-width: 0;
+    stroke-dasharray: 1 50;
+    fill: transparent;
+  }
+  45% {
+    stroke-width: 0.5;
+    stroke-dasharray: 50 0;
+    fill: transparent;
+  }
+  60%,
+  100% {
+    stroke-width: 0;
+    fill: #fff;
+  }
+}

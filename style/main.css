@@ -130,7 +130,7 @@ table {
 
 html,
 body {
-  font-family: 'Poppins';
+  font-family: 'Poppins', sans-serif;
   font-size: 93.75%;
   background: #e5e5e5;
 }
@@ -148,17 +148,17 @@ body {
 }
 
 a {
-  color: #49aa26;
+  color: #2b9348;
   text-decoration: none;
 }
 
 a:hover {
-  color: #3dd705;
+  color: #55a630;
 }
 
 header {
-  padding: 2rem 0 10rem;
-  background: #2d4a22;
+  padding: 5rem 0 10rem;
+  background: #007f5f;
   display: -webkit-box;
   display: -ms-flexbox;
   display: flex;
@@ -175,7 +175,9 @@ header #logo {
   padding: 2rem;
   margin-bottom: 2rem;
   background: #fff;
-  border-radius: 0.25rem;
+  border-radius: 0.75rem;
+  -webkit-box-shadow: 0 0 6px 0px rgba(0, 0, 0, 0.1);
+          box-shadow: 0 0 6px 0px rgba(0, 0, 0, 0.1);
   color: #363f5f;
 }
 
@@ -197,7 +199,17 @@ header #logo {
 }
 
 .card.total {
-  background: #49aa26;
+  background: #747d8c;
+  color: #fff;
+}
+
+.card.positive {
+  background: #2b9348;
+  color: #fff;
+}
+
+.card.negative {
+  background: #ee6055;
   color: #fff;
 }
 
@@ -239,16 +251,24 @@ table tbody td {
   color: #363f5f;
 }
 
+table tbody td.income, table tbody td.date {
+  font-family: 'IBM Plex Mono', monospace;
+}
+
 table tbody td.expense, table tbody td.income {
   text-align: right;
 }
 
 table tbody td.expense {
-  color: #e92929;
+  color: #ee6055;
 }
 
 table tbody td.income {
-  color: #49aa26;
+  color: #2b9348;
+}
+
+table tbody td.remove {
+  cursor: pointer;
 }
 
 .modal-overlay {
@@ -280,6 +300,7 @@ table tbody td.income {
   max-width: 540px;
   padding: 2.4rem;
   background: #f0f2f5;
+  border-radius: 0.5rem;
   position: relative;
   z-index: 1;
 }
@@ -326,13 +347,18 @@ table tbody td.income {
   width: 48%;
 }
 
+.modal form #amount,
+.modal form #date {
+  font-family: 'IBM Plex Mono', monospace;
+}
+
 button {
   width: 100%;
   height: 3rem;
   font-family: inherit;
   font-size: 1rem;
   color: #fff;
-  background: #49aa26;
+  background: #2b9348;
   border: none;
   border-radius: 0.25rem;
   cursor: pointer;
@@ -341,7 +367,7 @@ button {
 }
 
 button:hover {
-  background: #3dd705;
+  background: #55a630;
 }
 
 .button.cancel {
@@ -357,10 +383,10 @@ button:hover {
           justify-content: center;
   font-family: inherit;
   font-size: 1rem;
-  color: #e92929;
+  color: #ee6055;
   text-decoration: none;
   text-align: center;
-  border: 1px solid #e92929;
+  border: 1px solid #ee6055;
   border-radius: 0.25rem;
   opacity: 0.7;
   cursor: pointer;
@@ -373,7 +399,7 @@ button:hover {
 }
 
 .container {
-  width: min(90vw, 800px);
+  width: min(90vw, 968px);
   margin: auto;
 }
 
@@ -407,10 +433,67 @@ button:hover {
   color: #969cb3;
 }
 
+.loading-screen {
+  width: 100%;
+  height: 100vh;
+  position: absolute;
+  overflow: hidden;
+  display: -ms-grid;
+  display: grid;
+  place-items: center;
+  background: #007f5f;
+}
+
 footer {
   width: 100%;
   padding-bottom: 2rem;
   margin-top: 3rem;
   text-align: center;
+}
+
+#logo-loading {
+  fill: transparent;
+  stroke-width: 0.5;
+  stroke: white;
+  -webkit-animation: logo 4s ease infinite alternate;
+          animation: logo 4s ease infinite alternate;
+  -webkit-transform: scale(1.15);
+          transform: scale(1.15);
+}
+
+@-webkit-keyframes logo {
+  0% {
+    stroke-width: 0;
+    stroke-dasharray: 1 50;
+    fill: transparent;
+  }
+  45% {
+    stroke-width: 0.5;
+    stroke-dasharray: 50 0;
+    fill: transparent;
+  }
+  60%,
+  100% {
+    stroke-width: 0;
+    fill: #fff;
+  }
+}
+
+@keyframes logo {
+  0% {
+    stroke-width: 0;
+    stroke-dasharray: 1 50;
+    fill: transparent;
+  }
+  45% {
+    stroke-width: 0.5;
+    stroke-dasharray: 50 0;
+    fill: transparent;
+  }
+  60%,
+  100% {
+    stroke-width: 0;
+    fill: #fff;
+  }
 }
 /*# sourceMappingURL=main.css.map */

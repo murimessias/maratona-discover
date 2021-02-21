@@ -79,7 +79,7 @@ const DOM = {
       <td class="description">${transaction.description}</td>
       <td class="${CSSclass}">${amount}</td>
       <td class="date">${transaction.date}</td>
-        <td>
+        <td class="remove">
             <img onclick="Transaction.remove(${index})" src="./assets/minus.svg" alt="Remover transação">
         </td>
     `;
@@ -103,6 +103,18 @@ const DOM = {
 
   clearTransactions() {
     DOM.transactionsContainer.innerHTML = '';
+  },
+
+  updateCardColor() {
+    const Total = {
+      card: document.querySelector('.card.total'),
+    };
+
+    if (Transaction.total() > 0) {
+      Total.card.classList.add('positive');
+    } else if (Transaction.expenses() < 0) {
+      Total.card.classList.add('negative');
+    }
   },
 };
 
@@ -199,6 +211,7 @@ const App = {
   init() {
     Transaction.all.forEach(DOM.addTransaction);
     DOM.updateBalance();
+    DOM.updateCardColor();
     Storage.set(Transaction.all);
   },
 

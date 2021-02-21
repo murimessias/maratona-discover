@@ -27,6 +27,7 @@
   padding: 2.4rem;
 
   background: #f0f2f5;
+  border-radius: 0.5rem;
 
   position: relative;
   z-index: 1;
@@ -66,6 +67,11 @@
       &.actions button {
         width: 48%;
       }
+    }
+
+    #amount,
+    #date {
+      font-family: 'IBM Plex Mono', monospace;
     }
   }
 }
