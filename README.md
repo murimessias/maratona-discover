@@ -6,8 +6,9 @@
  <a href="#about" style="margin-right: 12px">About</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
  <a href="#layout">Layout</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
  <a href="#tech">Techs</a>
-
 </p>
+
+<img src="/assets/dev-readme.png" />
 
 ## 💻 About
 
