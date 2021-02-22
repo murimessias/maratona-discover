@@ -3,9 +3,10 @@
 </h1>
 
 <p align="center">
- <a href="#about" style="margin-right: 12px">About</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
- <a href="#layout">Layout</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
- <a href="#tech">Techs</a>
+ <a href="#-about">About</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp; 
+ <a href="#-layout">Layout</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+ <a href="#-tech">Techs</a>&nbsp;&nbsp;&nbsp;|&nbsp;&nbsp;&nbsp;
+ <a href="#-license">License</a>
 </p>
 
 <img src="./assets/dev-readme.png" />
@@ -29,3 +30,7 @@ The project was developed with following technologies:
 - **[Html](https://developer.mozilla.org/en-US/docs/Glossary/HTML)**
 - **[SCSS](https://sass-lang.com/documentation/syntax)**
 - **[Javascript](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript)**
+
+## 🖊️ License
+
+This project is licensed under the MIT License - see the LICENSE page for details.
