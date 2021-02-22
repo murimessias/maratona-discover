@@ -1,5 +1,5 @@
 <h1 align="center">
-  <img alt="dev.finances" title="dev.finances" src=".github/logo.svg" width="220px" />
+  <img alt="dev.finances" title="dev.finances" src="./assets/logo-readme.svg" width="220px" />
 </h1>
 
 <p align="center">
@@ -8,7 +8,7 @@
  <a href="#tech">Techs</a>
 </p>
 
-<img src="/assets/dev-readme.png" />
+<img src="./assets/dev-readme.png" />
 
 ## 💻 About
 
@@ -26,6 +26,6 @@ All content was made by <a href="https://github.com/maykbrito">Mayk Brito</a>, i
 
 The project was developed with following technologies:
 
--   **[Html](https://developer.mozilla.org/en-US/docs/Glossary/HTML)**
--   **[SCSS](https://sass-lang.com/documentation/syntax)**
--   **[Javascript](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript)**
+- **[Html](https://developer.mozilla.org/en-US/docs/Glossary/HTML)**
+- **[SCSS](https://sass-lang.com/documentation/syntax)**
+- **[Javascript](https://developer.mozilla.org/pt-BR/docs/Web/JavaScript)**

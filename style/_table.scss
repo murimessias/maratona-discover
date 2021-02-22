@@ -44,7 +44,8 @@ table {
       color: $color-dark-blue;
 
       &.income,
-      &.date {
+      &.date,
+      &.expense {
         font-family: 'IBM Plex Mono', monospace;
       }
 

@@ -251,7 +251,7 @@ table tbody td {
   color: #363f5f;
 }
 
-table tbody td.income, table tbody td.date {
+table tbody td.income, table tbody td.date, table tbody td.expense {
   font-family: 'IBM Plex Mono', monospace;
 }
 

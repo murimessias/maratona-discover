@@ -63,6 +63,7 @@ const Transaction = {
 // DOM objects and some functions to implement the new transactions
 const DOM = {
   transactionsContainer: document.querySelector('#data-table tbody'),
+  totalCard: document.querySelector('.total'),
 
   addTransaction(transaction, index) {
     const tr = document.createElement('tr');
@@ -106,14 +107,12 @@ const DOM = {
   },
 
   updateCardColor() {
-    const Total = {
-      card: document.querySelector('.card.total'),
-    };
-
     if (Transaction.total() > 0) {
-      Total.card.classList.add('positive');
-    } else if (Transaction.expenses() < 0) {
-      Total.card.classList.add('negative');
+      DOM.totalCard.style.background = '#2b9348';
+    } else if (Transaction.total() < 0) {
+      DOM.totalCard.style.background = '#ee6055';
+    } else {
+      DOM.totalCard.style.background = '';
     }
   },
 };
@@ -217,6 +216,7 @@ const App = {
 
   reload() {
     DOM.clearTransactions();
+    DOM.updateCardColor();
     App.init();
   },
 };
